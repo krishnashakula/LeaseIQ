@@ -25,10 +25,10 @@ logger = logging.getLogger(__name__)
 # Configuration constants
 class AnalysisConfig:
     """Configuration constants for analysis engine"""
-    # Financial ranges (USD)
-    MIN_RENT = 500
+    # Financial ranges (USD) - Lowered minimums for better extraction
+    MIN_RENT = 100  # Lowered from 500 to catch lower-priced rentals
     MAX_RENT = 100000
-    MIN_DEPOSIT = 100
+    MIN_DEPOSIT = 0  # Lowered from 100 to allow no deposit
     MAX_DEPOSIT = 100000
     MIN_PET_FEE = 0
     MAX_PET_FEE = 10000
