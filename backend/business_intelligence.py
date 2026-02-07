@@ -432,7 +432,17 @@ class LeaseAnalysisEngine:
         metrics.extraction_confidence = np.mean(confidence_scores) if confidence_scores else 0.0
         logger.info(f"Metrics extraction complete. Confidence: {metrics.extraction_confidence:.2%}")
         
-        # Derived metrics calculated in __post_init__
+        # Force recalculation of derived metrics
+        metrics.total_monthly_cost = (
+            metrics.monthly_rent + 
+            metrics.pet_fees + 
+            metrics.utility_costs +
+            metrics.parking_fee
+        )
+        if metrics.lease_duration_months > 0:
+            metrics.total_lease_value = metrics.total_monthly_cost * metrics.lease_duration_months
+        
+        logger.info(f"Total lease value calculated: ${metrics.total_lease_value:,.2f}")
         return metrics
 
     def _assess_risks(self, text: str, metrics: BusinessMetrics) -> RiskAssessment:
