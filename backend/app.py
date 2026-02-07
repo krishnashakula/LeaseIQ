@@ -281,19 +281,24 @@ def health():
 @handle_errors
 def upload_pdf():
     """Handle PDF upload and processing"""
+    print("=== PDF upload request received ===")
+    print(f"Request form data: {dict(request.form)}")
+    print(f"Request files: {list(request.files.keys())}")
+    print(f"Request args: {dict(request.args)}")
+    
     logger.info("PDF upload request received")
-    logger.info(f"Request form data: {dict(request.form)}")
-    logger.info(f"Request files: {dict(request.files)}")
     
     # Check if user wants to use sample PDF
-    # Check in form data, query params, or if no file is provided
-    use_sample = (
-        request.form.get('use_sample', '').lower() == 'true' or
-        request.args.get('use_sample', '').lower() == 'true' or
-        (request.form.get('use_sample') == 'true' and 'file' not in request.files)
-    )
+    use_sample_form = request.form.get('use_sample', '')
+    use_sample_args = request.args.get('use_sample', '')
     
-    logger.info(f"use_sample evaluated to: {use_sample}")
+    print(f"use_sample from form: '{use_sample_form}'")
+    print(f"use_sample from args: '{use_sample_args}'")
+    
+    use_sample = use_sample_form.lower() == 'true' or use_sample_args.lower() == 'true'
+    
+    print(f"use_sample evaluated to: {use_sample}")
+    print("=" * 50)
     
     if use_sample:
         # Use the default sample PDF
