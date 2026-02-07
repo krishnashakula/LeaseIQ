@@ -1,0 +1,79 @@
+{
+  "job_id": "eb9b5b7d-0db3-4586-9896-1169045cfdc7",
+  "analysis_type": "business_intelligence",
+  "timestamp": "2026-02-06T18:15:00.268542",
+  "original_filename": "residential_lease_agreement.pdf",
+  "analysis": {
+    "business_metrics": {
+      "monthly_rent": 2407.0,
+      "security_deposit": 2907.0,
+      "pet_fees": 10.0,
+      "utility_costs": 75.0,
+      "total_monthly_cost": 2492.0,
+      "lease_duration_months": 12,
+      "total_lease_value": 29904.0,
+      "notice_period_days": 60,
+      "early_termination_penalty": 2407.0
+    },
+    "risk_assessment": {
+      "risk_level": "low",
+      "risk_score": 15.0,
+      "financial_exposure": 10128.0,
+      "compliance_issues": [],
+      "tenant_favorable_terms": [
+        "Landlord handles major repairs",
+        "24/7 maintenance hotline"
+      ],
+      "landlord_favorable_terms": [
+        "Automatic renewal clause",
+        "Pet restrictions"
+      ],
+      "red_flags": [
+        "High early termination penalty"
+      ],
+      "recommendations": [
+        "Review notice period requirements",
+        "Consider negotiating security deposit",
+        "Verify termination penalty terms"
+      ]
+    },
+    "market_analysis": {
+      "rent_vs_market": "below_market",
+      "security_deposit_ratio": 1.2077274615704197,
+      "pet_fee_competitiveness": "below_market",
+      "notice_period_favorability": "landlord_favorable",
+      "overall_market_position": "competitive",
+      "cost_efficiency_score": 75.0
+    },
+    "revenue_opportunities": [
+      {
+        "type": "rent_optimization",
+        "description": "Below-market rent pricing",
+        "annual_impact": 2316.0,
+        "implementation_effort": "low",
+        "timeline": "30-60 days"
+      }
+    ],
+    "compliance_report": {
+      "compliance_score": 70.0,
+      "violations": [
+        "Missing required disclosures: lead paint, mold, asbestos"
+      ],
+      "recommendations": [
+        "Add missing disclosures",
+        "Review fair housing compliance"
+      ],
+      "risk_level": "medium"
+    },
+    "portfolio_insights": {
+      "property_classification": "mid_market",
+      "retention_probability": 0.705,
+      "revenue_optimization_potential": 2400.0,
+      "operational_efficiency_score": 85.0,
+      "investment_attractiveness": "attractive",
+      "portfolio_fit_score": 78.0
+    },
+    "analysis_timestamp": "2026-02-06T18:15:00.255039",
+    "confidence_score": 85.0
+  }
+}

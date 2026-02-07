@@ -1,0 +1,9 @@
+{
+  "name": "pdf-extractor-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for PDF extraction service",
+  "scripts": {
+    "start": "python -m http.server 8080"
+  },
+  "dependencies": {}
+}

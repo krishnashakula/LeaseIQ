@@ -1,0 +1,30 @@
+{
+  "job_id": "eb9b5b7d-0db3-4586-9896-1169045cfdc7",
+  "filename": "residential_lease_agreement.pdf",
+  "status": "success",
+  "data": {
+    "metadata": {
+      "title": "Demo Lease Document",
+      "author": "Property Management Company",
+      "num_pages": 49,
+      "ocr_used": false
+    },
+    "full_text": "\nRESIDENTIAL LEASE AGREEMENT\n\nProperty Address: 123 Main Street, Apt 5B, City, State 12345\n\nTENANT INFORMATION\nName: John Doe\nPhone: (555) 123-4567\nEmail: john.doe@email.com\n\nLEASE TERMS\nMonthly Rent: $2,407.00\nSecurity Deposit: $2,907.00\nPet Fee: $10.00 per month\nLease Term: 12 months\nStart Date: November 14, 2025\nEnd Date: November 13, 2026\n\nNOTICE REQUIREMENTS\nSixty (60) calendar days written notice required for lease termination\nLiquidated damages of one month rent for insufficient notice\n\nPET POLICY\nMaximum 2 pets per apartment\nPet deposit: Additional security deposit may be required\nAggressive dog breeds are not allowed\nMonthly pet fee: $10.00 per pet\n\nUTILITIES\nTenant responsible for electricity, gas, internet\nWater and trash included in rent\nEstimated monthly utilities: $50-100\n\nMAINTENANCE\nLandlord responsible for major repairs\nTenant responsible for minor maintenance and upkeep\n24/7 emergency maintenance hotline available\n\nPARKING\nOne assigned parking space included\nAdditional parking: $25.00 per month (subject to availability)\nNo parking of RVs, boats, or commercial vehicles\n\nINSURANCE\nTenant must maintain renters insurance\nMinimum coverage: $100,000 liability\nLandlord not responsible for tenant personal property\n\nRENT INCREASES\nRent may be increased with 60 days written notice\nMaximum increase per year: 5%\n\nLEASE TERMINATION\nEarly termination fee: $2,407.00 (one month rent)\nLease automatically renews month-to-month unless 60-day notice given\n\nRESTRICTIONS\nNo smoking anywhere on property\nNo grills or open flames on balconies\nNo waterbeds without written permission\nQuiet hours: 10 PM - 8 AM daily\n        ",
+    "sections": [
+      {
+        "heading": "TENANT INFORMATION",
+        "content": "Name: John Doe\nPhone: (555) 123-4567\nEmail: john.doe@email.com"
+      },
+      {
+        "heading": "LEASE TERMS",
+        "content": "Monthly Rent: $2,407.00\nSecurity Deposit: $2,907.00\nPet Fee: $10.00 per month"
+      }
+    ],
+    "statistics": {
+      "total_characters": 1500,
+      "total_words": 250,
+      "total_pages": 49,
+      "total_sections": 12
+    }
+  }
+}

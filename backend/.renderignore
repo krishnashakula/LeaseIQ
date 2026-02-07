@@ -1,0 +1,39 @@
+# Render Ignore File
+# Files and directories to exclude from deployment
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Development
+.env
+.env.local
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Uploads and outputs (use disk mount instead)
+uploads/*.pdf
+uploads/*.jpg
+uploads/*.png
+outputs/*.json
+
+# OS files
+.DS_Store
+Thumbs.db

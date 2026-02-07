@@ -1,0 +1,49 @@
+services:
+  # Backend API Service
+  - type: web
+    name: lease-intelligence-backend
+    env: python
+    region: oregon
+    plan: starter
+    buildCommand: "cd backend && pip install -r requirements.txt"
+    startCommand: "cd backend && gunicorn --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 120 --access-logfile - --error-logfile - app:app"
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: MAX_CONTENT_LENGTH
+        value: 52428800
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: LOG_LEVEL
+        value: INFO
+      - key: SECURE_HEADERS
+        value: true
+      - key: PORT
+        value: 5000
+    disk:
+      name: uploads-data
+      mountPath: /opt/render/project/src/backend/uploads
+      sizeGB: 1
+  
+  # Frontend Static Site
+  - type: web
+    name: lease-intelligence-frontend
+    env: static
+    buildCommand: "echo 'Static site - no build needed'"
+    staticPublishPath: ./frontend
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://lease-intelligence-backend.onrender.com/api/*

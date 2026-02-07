@@ -1,0 +1,22 @@
+# Production Requirements - Pinned Versions
+# Core Framework
+Flask==3.0.0
+Flask-CORS==4.0.0
+Werkzeug==3.0.1
+
+# PDF Processing
+PyMuPDF==1.23.8
+Pillow==10.1.0
+
+# Optional OCR (uncomment if needed)
+# pytesseract==0.3.10
+
+# Production WSGI Servers
+gunicorn==21.2.0
+waitress==2.1.2
+
+# Business Intelligence
+numpy==1.24.3
+
+# Environment Management
+python-dotenv==1.0.0
