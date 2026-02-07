@@ -283,43 +283,65 @@ def upload_pdf():
     """Handle PDF upload and processing"""
     logger.info("PDF upload request received")
     
-    # Validate request
-    if 'file' not in request.files:
-        logger.warning("Upload request missing file")
-        raise ValueError('No file provided')
+    # Check if user wants to use sample PDF
+    use_sample = request.form.get('use_sample', 'false').lower() == 'true'
     
-    file = request.files['file']
-    
-    if file.filename == '':
-        logger.warning("Upload request with empty filename")
-        raise ValueError('No file selected')
-    
-    if not allowed_file(file.filename):
-        logger.warning(f"Invalid file type: {file.filename}")
-        raise ValueError('Only PDF files are allowed')
-    
-    # Validate file size
-    file.seek(0, os.SEEK_END)
-    file_size = file.tell()
-    file.seek(0)
-    
-    if file_size > app.config['MAX_CONTENT_LENGTH']:
-        logger.warning(f"File too large: {file_size} bytes")
-        raise ValueError(f'File too large. Maximum size: {app.config["MAX_CONTENT_LENGTH"] // (1024*1024)}MB')
-    
-    if file_size == 0:
-        logger.warning("Empty file uploaded")
-        raise ValueError('File is empty')
+    if use_sample:
+        # Use the default sample PDF
+        sample_path = os.path.join(os.path.dirname(__file__), 'sample_lease.pdf')
+        if not os.path.exists(sample_path):
+            logger.error("Sample PDF not found")
+            raise FileNotFoundError('Sample PDF not available')
         
-    # Generate unique ID for this processing job
-    job_id = str(uuid.uuid4())
-    filename = secure_filename(file.filename)
-    
-    logger.info(f"Processing upload: job_id={job_id}, filename={filename}, size={file_size}")
-    
-    # Save uploaded file
-    upload_path = UPLOAD_FOLDER / f"{job_id}_{filename}"
-    file.save(str(upload_path))
+        # Generate unique ID for this processing job
+        job_id = str(uuid.uuid4())
+        filename = 'sample_lease.pdf'
+        
+        logger.info(f"Processing sample PDF: job_id={job_id}")
+        
+        # Copy sample to uploads folder
+        upload_path = UPLOAD_FOLDER / f"{job_id}_{filename}"
+        import shutil
+        shutil.copy2(sample_path, str(upload_path))
+        
+    else:
+        # Validate request
+        if 'file' not in request.files:
+            logger.warning("Upload request missing file")
+            raise ValueError('No file provided')
+        
+        file = request.files['file']
+        
+        if file.filename == '':
+            logger.warning("Upload request with empty filename")
+            raise ValueError('No file selected')
+        
+        if not allowed_file(file.filename):
+            logger.warning(f"Invalid file type: {file.filename}")
+            raise ValueError('Only PDF files are allowed')
+        
+        # Validate file size
+        file.seek(0, os.SEEK_END)
+        file_size = file.tell()
+        file.seek(0)
+        
+        if file_size > app.config['MAX_CONTENT_LENGTH']:
+            logger.warning(f"File too large: {file_size} bytes")
+            raise ValueError(f'File too large. Maximum size: {app.config["MAX_CONTENT_LENGTH"] // (1024*1024)}MB')
+        
+        if file_size == 0:
+            logger.warning("Empty file uploaded")
+            raise ValueError('File is empty')
+            
+        # Generate unique ID for this processing job
+        job_id = str(uuid.uuid4())
+        filename = secure_filename(file.filename)
+        
+        logger.info(f"Processing upload: job_id={job_id}, filename={filename}, size={file_size}")
+        
+        # Save uploaded file
+        upload_path = UPLOAD_FOLDER / f"{job_id}_{filename}"
+        file.save(str(upload_path))
     
     try:
         # Process PDF
