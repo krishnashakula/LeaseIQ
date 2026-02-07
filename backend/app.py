@@ -57,6 +57,15 @@ UPLOAD_FOLDER = app.config['UPLOAD_FOLDER']
 OUTPUT_FOLDER = app.config['OUTPUT_FOLDER']
 ALLOWED_EXTENSIONS = app.config['ALLOWED_EXTENSIONS']
 
+# Setup business intelligence routes immediately (not just in __main__)
+if BUSINESS_INTELLIGENCE_AVAILABLE:
+    try:
+        app = setup_business_intelligence(app)
+        logger.info("Business Intelligence routes registered")
+    except Exception as e:
+        logger.error(f"Business Intelligence setup failed: {e}")
+        BUSINESS_INTELLIGENCE_AVAILABLE = False
+
 # Security headers
 if app.config['SECURE_HEADERS']:
     @app.after_request
@@ -386,14 +395,8 @@ def list_results():
     return jsonify({'results': results, 'count': len(results)}), 200
 
 if __name__ == '__main__':
-    # Setup business intelligence features if available
-    if BUSINESS_INTELLIGENCE_AVAILABLE:
-        try:
-            app = setup_business_intelligence(app)
-            logger.info("Business Intelligence features enabled")
-        except Exception as e:
-            logger.error(f"Business Intelligence setup failed: {e}")
-    else:
+    # Business intelligence already set up above for Gunicorn compatibility
+    if not BUSINESS_INTELLIGENCE_AVAILABLE:
         logger.warning("Business Intelligence features disabled")
     
     port = int(os.environ.get('PORT', 5000))
